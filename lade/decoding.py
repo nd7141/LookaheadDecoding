@@ -12,7 +12,7 @@ CONFIG_MAP = {}
 COLOR_PRINT = int(os.environ.get("COLOR_PRINT", 0))
 
 def greedy_search_proxy(self, *args, **kwargs):
-    USE_LADE = int(os.environ.get("USE_LADE", 0))
+    USE_LADE = int(os.environ.get("USE_LADE", 1))
     CHAT = int(os.environ.get("CHAT", 0))
     if CHAT and USE_LADE:
         return jacobi_greedy_search_multilevel(self, chat=True, *args, **kwargs)
