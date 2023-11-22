@@ -3,7 +3,7 @@ from transformers import GenerationMixin
 from transformers.models.llama import modeling_llama 
 
 from .decoding import greedy_search_proxy, FUNC_MAP, CONFIG_MAP
-from .models import llama
+import llama
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM
 import torch 
 
