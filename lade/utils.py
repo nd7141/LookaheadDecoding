@@ -3,7 +3,7 @@ from transformers import GenerationMixin
 from transformers.models.llama import modeling_llama 
 
 from .decoding import greedy_search_proxy, FUNC_MAP, CONFIG_MAP
-import llama
+from .llama import LlamaModeljforward, jforward_multilevel, j_prepare_decoder_attention_mask
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM
 import torch 
 
@@ -23,9 +23,9 @@ def config_lade(WINDOW_SIZE=None, LEVEL=None, DEBUG=None, GUESS_SET_SIZE=None, A
     
 
 def augment_llama():
-    modeling_llama.LlamaForCausalLM.jforward_multilevel = llama.jforward_multilevel
-    modeling_llama.LlamaModel.LlamaModeljforward = llama.LlamaModeljforward
-    modeling_llama.LlamaModel.j_prepare_decoder_attention_mask = llama.j_prepare_decoder_attention_mask    
+    modeling_llama.LlamaForCausalLM.jforward_multilevel = jforward_multilevel
+    modeling_llama.LlamaModel.LlamaModeljforward = LlamaModeljforward
+    modeling_llama.LlamaModel.j_prepare_decoder_attention_mask = j_prepare_decoder_attention_mask    
 
 def augment_generate():
     FUNC_MAP["greedy_search"] = GenerationMixin.greedy_search
